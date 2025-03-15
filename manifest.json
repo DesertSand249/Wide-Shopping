@@ -1,0 +1,36 @@
+{
+    "name": "Wide Shopping",
+    "description": "많은 온라인 쇼핑몰이 모바일 중심으로 설계되어 PC 환경에서 답답한 레이아웃을 제공합니다. Make Shopping Enjoy Again은 이를 해결하여 더 편리한 사용자 경험을 제공합니다.",
+    "author": "Gunmo Goo, Lee Inha",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "icons": {
+        "16": "icons/icon16.png",
+        "32": "icons/icon32.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icons/icon16.png",
+        "32": "icons/icon32.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+      }
+    },
+    "content_scripts": [
+        {
+            "matches": ["*://*.musinsa.com/*", "*://*.m.a-bly.com/*"],
+            "js": ["content.js"],
+            "run_at": "document_idle"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["sites/*.js"],
+            "matches": ["*://*.musinsa.com/*", "*://*.m.a-bly.com/*"]
+        }
+    ],
+  "permissions": ["activeTab", "storage"]
+}
