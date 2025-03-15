@@ -100,7 +100,87 @@ function setFullWidth() {
   if (commonLayoutEl && commonLayoutEl.style.maxWidth !== 'none') {
     commonLayoutEl.style.maxWidth = 'none';
     console.log('Musinsa Layout Enhancer: Set max-width to none');
+
+    // 기존 스타일 제거 (중복 방지)
+    const existingStyle = document.getElementById('customStyle');
+    if (existingStyle) {
+      existingStyle.remove();
+    }
+
+    // 새로운 스타일 추가
+    const style = document.createElement('style');
+    style.id = 'customStyle';
+    style.innerHTML = `
+      @media (min-width: 600px) {
+        #commonLayoutContainer::before, 
+        #commonLayoutContainer::after {
+          display: none !important;
+          content: "" !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  };
+
+  //공통헤더 너비 제한 제거
+  const commonHeaderEl = document.getElementById('commonLayoutHeader');
+  if (commonHeaderEl && commonHeaderEl.style.maxWidth !== 'none') {
+    commonHeaderEl.style.maxWidth = 'none';
+  };
+
+ // Swiper 슬라이드 요소 크기 조정
+ const commonSwiper = document.getElementsByClassName('swiper-slide');
+ if (commonSwiper.length > 0) {
+   Array.from(commonSwiper).forEach((el) => {
+     el.style.width = '300px';
+   });
+   console.log('Musinsa Layout Enhancer: Swiper slide width set to 300px');
+ }
+
+  // QR 팝업 제거 함수
+  function removeQRPopup() {
+    const qrPopup = document.querySelector('aside[data-popup-title="앱설치유도QR"]');
+    if (qrPopup) {
+      qrPopup.remove();
+      console.log('Musinsa Layout Enhancer: QR popup removed');
+    }
   }
+  removeQRPopup();
+
+  // QR 팝업이 동적으로 생성될 경우 감지 후 자동 삭제
+  const qrObserver = new MutationObserver(() => {
+    removeQRPopup();
+  });
+
+  /// 특정 동적 요소들의 max-width 제거 함수
+  function removeMaxWidthElements() {
+    const dimElements = document.getElementsByClassName('_dim_12777_50');
+    const searchHomeWraps = document.getElementsByClassName('search-home-main-wrap');
+
+    if (dimElements.length > 0) {
+      Array.from(dimElements).forEach((el) => {
+        el.style.maxWidth = 'none';
+      });
+      console.log('Musinsa Layout Enhancer: _dim_12777_50 max-width set to none');
+    }
+
+    if (searchHomeWraps.length > 0) {
+      Array.from(searchHomeWraps).forEach((el) => {
+        el.style.maxWidth = 'none';
+      });
+      console.log('Musinsa Layout Enhancer: search-home-main-wrap max-width set to none');
+    }
+  }
+    // 초기 실행 (페이지 로드 시 바로 적용)
+    removeMaxWidthElements();
+
+    // main에서 좌측상단 로고 클릭 시 나타나는 DIM 및 search-home-main-wrap 감지 (MutationObserver)
+    const observer = new MutationObserver(() => {
+      removeMaxWidthElements();
+    });
+    
+  // body의 변화 감지 (DOM 변경 시 트리거)
+  observer.observe(document.body, { childList: true, subtree: true });
 }
 
 function modifyGridTemplateColumns() {
