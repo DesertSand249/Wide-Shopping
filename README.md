@@ -39,14 +39,14 @@ Make Shopping Enjoy Again은 모바일 중심으로 설계된 온라인 쇼핑�
 
 ```
 wide-shopping/
-├── manifest.json        # 확장 프로그램 설정 파일
+├── manifest.json
 ├── content.js           # 메인 컨트롤러
 ├── popup.html           # 팝업 UI
-├── popup.js             # 팝업 기능
+├── popup.js             # 팝업 스크립트
 ├── style.css            # 스타일시트
-└── sites/               # 사이트별 모듈
-    ├── musinsa.js       # 무신사 최적화 모듈
-    └── ably.js          # 에이블리 최적화 모듈
+└── sites/
+    ├── musinsa.js       # 무신사 모듈
+    └── ably.js          # 에이블리 모듈
 ```
 
 ### 개발 환경 구성
@@ -74,5 +74,5 @@ wide-shopping/
 
 ## 문의 및 피드백
 
-버그 신고나 기능 제안은 다음 이메일로 문의해주세요:
+버그 신고나 기능 제안은 깃헙 이슈 또는 아래 이메일로 문의해주세요:
 이메일: ggm1207@gmail.com
