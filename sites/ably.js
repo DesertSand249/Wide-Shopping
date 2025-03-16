@@ -22,6 +22,12 @@ const rules = [
     action: (url) => {
       enhanceLayout();
     }
+  },
+  {
+    pattern: /^\/goods(\/.*)?$/,  // /today 또는 /today/로 시작하는 모든 경로
+    action: (url) => {
+      enhanceLayout();
+    }
   }
 ];
 
@@ -59,6 +65,48 @@ function setFullWidth() {
     if (bodyEl && bodyEl.style.maxWidth !== 'none') {
       bodyEl.style.maxWidth = 'none';
       console.log('Ably Layout Enhancer: Set max-width to none on body');
+    }
+
+    //앱설치 배너 삭제
+    const elementsToRemove = document.querySelectorAll('.gyhUSe');
+    if (elementsToRemove.length > 0) {
+      elementsToRemove.forEach(el => el.remove());
+      console.log('Musinsa Layout Enhancer: Removed elements with class "gyhUSe"');
+    }
+    
+    //앱설치 배너를 삭제함으로써 top에 sticky로 붙는 다른 메뉴바 수치 조정
+    const wwefnElements = document.querySelectorAll('.wwefn');
+    if (wwefnElements.length > 0) {
+      wwefnElements.forEach(el => {
+        el.style.top = '48px';
+      });
+    }
+
+    //최상단 indicator 너비 제한 제거
+    const epKAzRElements = document.querySelectorAll('.epKAzR');
+    if (epKAzRElements.length > 0) {
+      epKAzRElements.forEach(el => {
+        el.style.maxWidth = 'none';
+      });
+    }
+
+    // Swiper 슬라이드 요소 크기 조정
+    const commonSwiper = document.getElementsByClassName('swiper-slide');
+    if (commonSwiper.length > 0) {
+      Array.from(commonSwiper).forEach((el) => {
+        el.style.height = '240px';
+      });
+      console.log('Musinsa Layout Enhancer: Swiper slide width set to 300px');
+    };
+    // Swiper 슬라이드 내부의 이미지 크기 조정 ('.swiper-slide' 내부의 '.hLLPut' 이미지만 선택)
+    const commonSwiperImg = document.querySelectorAll('.swiper-slide .hLLPut');
+    if (commonSwiperImg.length > 0) {
+      commonSwiperImg.forEach((el) => {
+        el.style.height = '240px';
+        el.style.width = 'auto';
+        el.style.margin = '0 auto';
+      });
+      console.log('Musinsa Layout Enhancer: Swiper slide images adjusted');
     }
 }
 
