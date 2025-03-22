@@ -32,5 +32,5 @@
             "matches": ["*://*.musinsa.com/*", "*://*.m.a-bly.com/*"]
         }
     ],
-  "permissions": ["activeTab", "storage"]
+  "permissions": ["storage"]
 }
